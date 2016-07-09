@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+#board {
+  height: 50%;
+	width: 40%;
+	max-width: 1200px;
+	min-width: 450px;
+	display: inline-block;
+
+}
+button {
+  float:none;
+}
+.simon {
+  height: 200px;
+  width: 200px;
+  border: 1px solid transparent;
+	border-color: black;
+  border-radius: 10px;
+  float: left;
+}
+
+#green {
+  background-color: white;
+  width: 50%;
+}
+
+#red {
+  background-color: white;
+  width: 50%;
+}
+
+#blue {
+  background-color: white;
+  width: 50%;
+}
+#yellow {
+  background-color: white;
+  width: 50%;
+}
