@@ -3,40 +3,64 @@
 }
 
 #board {
-  height: 50%;
-	width: 40%;
-	max-width: 1200px;
-	min-width: 450px;
+  height: 500px;
+  width: 500px;
 	display: inline-block;
-
 }
 button {
   float:none;
 }
 .simon {
-  height: 200px;
-  width: 200px;
-  border: 1px solid transparent;
-	border-color: black;
-  border-radius: 10px;
+  height: 250px;
+  width: 250px;
   float: left;
 }
 
-#green {
-  background-color: white;
+.quadrant {
+  border: 1px solid transparent;
+  border-color: black;
+  border-radius: 999px;
+  height: 50%;
   width: 50%;
+  float: left;
+}
+
+#quadrant1 {
+  border-radius: 100% 0px 0px 0px;
+}
+
+#quadrant2 {
+  border-radius: 0px 100% 0px 0px;
+}
+
+#quadrant3 {
+  border-radius: 0px 0px 0px 100%;
+}
+
+#quadrant4 {
+  border-radius: 0px 0px 100% 0px;
+}
+
+#green {
+  background-color: green;
+  border-radius: 100% 0px 0px 0px;
+  opacity: 0;
 }
 
 #red {
-  background-color: white;
-  width: 50%;
+  background-color: red;
+  border-radius: 0px 100% 0px 0px;
+  opacity: 0;
 }
 
 #blue {
-  background-color: white;
-  width: 50%;
+  background-color: blue;
+  border-radius: 0px 0px 0px 100%;
+  opacity: 0;
 }
+
 #yellow {
-  background-color: white;
-  width: 50%;
+  background-color: yellow;
+  border-radius: 0px 0px 100% 0px;
+  opacity: 0;
 }
