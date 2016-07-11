@@ -1,60 +1,44 @@
 $(document).ready(function(){
   console.log("Good to go!")
-  var gameOn = false;
+  var turn = 1;
+  var quadrantsLit = 0;
+  var cpuSequence = [];
+  var userSequence = [];
+  var placeInUserSequence = 0;
+  var userTurn = false;
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
   $('#begin').click(function(){
-    console.log('START');
-    var turn = 1;
-    var quadrantsLit = 0;
-    var cpuSequence = [];
-    var userSequence = [];
-
-    if (gameOn == true); {
-      //CPU TURN
-      if (turn > quadrantsLit) {
-        console.log('turn > quadrants')
-        for (i = 0; i < turn; i++) {
-          console.log('for loop executing')
-          var whichQuadrant = getRandomInt(0,3);
-          if (whichQuadrant == 0) {
-            cpuSequence.push('green');
-          }
-          else if (whichQuadrant == 1) {
-            cpuSequence.push('red');
-          }
-          else if (whichQuadrant == 2) {
-            cpuSequence.push('blue');
-          }
-          else if (whichQuadrant == 3) {
-            cpuSequence.push('yellow');
-          }
-          console.log(cpuSequence);
+    animateBoard();
+    userTurn = true;
+  });
+  function animateBoard() {
+    cpuSequence.push(getRandomInt(0,3));
+    var i = 0;
+    setInterval(function(){
+      if (i < cpuSequence.length) {
+        if (cpuSequence[i] == 0) {
+          $('#green').css('background-color', 'green');
+        }
+        else if (cpuSequence[i] == 1) {
+          $('#red').css('background-color', 'red')
+        }
+        else if (cpuSequence[i] == 2) {
+          $('#blue').css('background-color', 'blue');
+        }
+        else if (cpuSequence[i] == 3) {
+          $('#yellow').css('background-color', 'yellow');
         }
       }
-      console.log(cpuSequence)
-        userSequence = [];
+      setTimeout(function(){
+        $('.simon').css('background-color', 'white');
+      }, 500);
+      i++;
+    }, 1000);
+  }
 
-      $('.simon').click(function(){
-        var placeInUserSequence = 0;
-        var newColor = $(this).attr('id');
-        $(this).css('background-color', newColor);
-        userSequence.push(newColor);
-        setTimeout(function(){
-          $(this).css('background-color', 'pink');
-        }, 500);
-        if (userSequence[placeInUserSequence] == cpuSequence[placeInUserSequence]) {
-          setTimeout(function() {
-            turn++;
-          }, 2000)
-        }
-        else {
-          gameOn = false;
-        }
-      });
-    }
-  });
+
 });
