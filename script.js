@@ -1,7 +1,6 @@
 $(document).ready(function(){
   console.log("Good to go!")
   var turn = 1;
-  var quadrantsLit = 0;
   var cpuSequence = [];
   var userSequence = [];
   var placeInUserSequence = 0;
@@ -9,6 +8,7 @@ $(document).ready(function(){
   var colors = ['green', 'red', 'blue', 'yellow']
   var intervalRun;
   var score = 0;
+  var speed = 1;
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -29,13 +29,16 @@ $(document).ready(function(){
         $('.simon').eq(cpuSequence[i]).css('opacity', 1);
         window.setTimeout(function(){
           $('.simon').css('opacity', .2);
-        }, 500);
+        }, (500 * speed));
         i++;
       }
       else if (i == cpuSequence.length) {
         clearInterval(intervalRun);
       };
-    }, 1000);
+    }, (1000 * speed));
+    if (speed > 0.5) {
+      speed = speed - 0.05;
+    }
     userTurn = true;
   }
   $('.simon').click(function(){
@@ -45,7 +48,7 @@ $(document).ready(function(){
       var thisNumber = colors.indexOf(thisColor);
       setTimeout(function(){
         $('.simon').css('opacity', .2);
-      }, 500);
+      }, (500 * speed));
       userSequence.push(thisNumber);
       console.log(userSequence);
       console.log(cpuSequence);
@@ -62,6 +65,8 @@ $(document).ready(function(){
       else {
         userTurn = false;
         alert('LOSE');
+        score = 0;
+        $('#score').text(score + " points")
         placeInUserSequence = 0;
         userSequence = [];
         cpuSequence = [];
