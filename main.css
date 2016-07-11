@@ -5,20 +5,41 @@
 #board {
   height: 500px;
   width: 500px;
-	display: inline-block;
+  margin: auto;
+  z-index: 10;
+}
+h3 {
+  margin: -20px 0 5px 0;
+  font-size: 3em;
+  text-align: center;
 }
 button {
-  float:none;
+  float: right;
+  margin: 0 auto;
+  margin-right: 12%;
+}
+#score {
+  float: left;
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-left: 15%;
+}
+#lose {
+  float: left;
+  margin: 0 auto;
+  margin-left: 30%;
+  opacity: 0;
 }
 .simon {
-  height: 250px;
-  width: 250px;
+  height: 100%;
+  width: 100%;
   float: left;
+  z-index: -1;
 }
 
 .quadrant {
-  border: 1px solid transparent;
-  border-color: black;
+  border: 15px solid transparent ;
+  border-color: rgb(50, 50, 50);
   border-radius: 999px;
   height: 50%;
   width: 50%;
@@ -44,23 +65,38 @@ button {
 #green {
   background-color: green;
   border-radius: 100% 0px 0px 0px;
-  opacity: 0;
+  opacity: .2;
 }
 
 #red {
   background-color: red;
   border-radius: 0px 100% 0px 0px;
-  opacity: 0;
+  opacity: .2;
 }
 
 #blue {
   background-color: blue;
   border-radius: 0px 0px 0px 100%;
-  opacity: 0;
+  opacity: .2;
 }
 
 #yellow {
   background-color: yellow;
   border-radius: 0px 0px 100% 0px;
-  opacity: 0;
+  opacity: .2;
+}
+#center-button {
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: 150px;
+  background-color:white;
+  border: 20px solid rgb(50, 50, 50);
+  background-color: rgb(50, 50, 50);
+  color: white;
+  padding-top: 60px;
+	width:200px;
+	height:200px;
+	border-radius:50%;
+  text-align: center;
 }

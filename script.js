@@ -28,7 +28,7 @@ $(document).ready(function(){
       if (i < cpuSequence.length) {
         $('.simon').eq(cpuSequence[i]).css('opacity', 1);
         window.setTimeout(function(){
-          $('.simon').css('opacity', 0);
+          $('.simon').css('opacity', .2);
         }, 500);
         i++;
       }
@@ -44,7 +44,7 @@ $(document).ready(function(){
       var thisColor = $(this).attr('id');
       var thisNumber = colors.indexOf(thisColor);
       setTimeout(function(){
-        $('.simon').css('opacity', 0);
+        $('.simon').css('opacity', .2);
       }, 500);
       userSequence.push(thisNumber);
       console.log(userSequence);
