@@ -14,25 +14,10 @@ $(document).ready(function(){
   var speed = 1;
   //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
   var highScores = [0, 0, 0, 0, 0]
+
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
-  //A basic fade in for the instructions - when the text on top is hovered over, the list of instructions appears
-  $('#instruction-start').hover(function(){
-    $('.instructions').css('opacity', 1);
-    }, function(){
-    $('.instructions').css('opacity', 0);
-  });
-
-  //When the green button is clicked, as long as it's not currently the user's turn, it starts a new game
-  $('#begin').click(function(){
-    if (userTurn == false){
-      $('#lose').css('opacity', 0);
-      animateBoard();
-      userTurn = true;
-    }
-  });
 
   //A function to run the animation during the CPU's turn
   function animateBoard() {
@@ -79,18 +64,75 @@ $(document).ready(function(){
     }
     //If the user clicks the wrong color, it ends the user's turn, displays a message that they lose, and resets their score and both arrays
     else {
-      userTurn = false;
-      speed = 1;
-      $('#lose').css('opacity', 1);
-      updateHighScores(score);
-      score = 0;
-      updateScore(score);
-      placeInUserSequence = 0;
-      userSequence = [];
-      cpuSequence = [];
+      youLose();
     }
-
   }
+
+  //A basic function to update score - if the user's score is under 10, it adds a 0 in front of it so that the score is still displayed using 2 digits
+  function updateScore(num){
+    if (num < 10) {
+      $('#score').text("0" + num);
+    }
+    else {
+      $('#score').text(num);
+    }
+  }
+
+  //Handles the high score board - it runs through all the options to see where to place your new score, then splices it into the array where appropriate
+  function updateHighScores(numIn){
+    num = parseInt(numIn);
+      if (num > highScores[0]) {
+        highScores.splice(0, 0, num);
+      }
+      else if (num > highScores[1]) {
+        highScores.splice(1, 0, num);
+      }
+      else if (num > highScores[2]) {
+        highScores.splice(2, 0, num);
+      }
+      else if (num > highScores[3]) {
+        highScores.splice(3, 0, num);
+      }
+      else if (num > highScores[4]) {
+        highScores.splice(4, 0, num);
+      }
+    for (i = 0; i < 5; i++) {
+      if (highScores[i] < 10) {
+        $('.highscore').eq(i).text('0' + highScores[i])
+      }
+      else {
+        $('.highscore').eq(i).text(highScores[i])
+      }
+    }
+  }
+
+  function youLose(){
+    userTurn = false;
+    speed = 1;
+    $('#lose').css('opacity', 1);
+    updateHighScores(score);
+    score = 0;
+    updateScore(score);
+    placeInUserSequence = 0;
+    userSequence = [];
+    cpuSequence = [];
+  }
+
+  //A basic fade in for the instructions - when the text on top is hovered over, the list of instructions appears
+  $('#instruction-start').hover(function(){
+    $('.instructions').css('opacity', 1);
+    }, function(){
+    $('.instructions').css('opacity', 0);
+  });
+
+  //When the green button is clicked, as long as it's not currently the user's turn, it starts a new game
+  $('#begin').click(function(){
+    if (userTurn == false){
+      $('#lose').css('opacity', 0);
+      animateBoard();
+      userTurn = true;
+    }
+  });
 
   //When the user clicks a quadrant, this executes as appropriate
   $('.simon').click(function(){
@@ -109,49 +151,8 @@ $(document).ready(function(){
       }, (500 * speed));
       //add the number corresponding with the quadrant clicked to the user's sequence
       userSequence.push(thisNumber);
-      console.log(userSequence);
-      console.log(cpuSequence);
       //And finally, run the checkPatterns function to see if the arrays match up
       checkPatterns();
     }
   });
-
-  //A basic function to update score - if the user's score is under 10, it adds a 0 in front of it so that the score is still displayed using 2 digits
-  function updateScore(num){
-    if (num < 10) {
-      $('#score').text("0" + num);
-    }
-    else {
-      $('#score').text(num);
-    }
-  }
-
-  function updateHighScores(numIn){
-    num = parseInt(numIn);
-      if (num > highScores[0]) {
-        highScores.splice(0, 0, num);
-      }
-      else if (num > highScores[1]) {
-        highScores.splice(1, 0, num);
-      }
-      else if (num > highScores[2]) {
-        highScores.splice(2, 0, num);
-      }
-      else if (num > highScores[3]) {
-        highScores.splice(3, 0, num);
-      }
-      else if (num > highScores[4]) {
-        highScores.splice(4, 0, num);
-      }
-
-    for (i = 0; i < 5; i++) {
-      if (num < 10) {
-        $('.highscore').eq(i).text('0' + highScores[i])
-      }
-      else {
-        $('.highscore').eq(i).text(highScores[i])
-      }
-    }
-  }
-
 });
