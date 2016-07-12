@@ -12,18 +12,17 @@ $(document).ready(function(){
   var placeInUserSequence = 0;
   var speed = 1;
   //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
-  var highScores = [];
+  var highScores = JSON.parse(localStorage.getItem("scoreStorage"));
 
-  //  Code intended to store the high scores array in local storage - not currently working
-  // if (highScores == null) {
-  //   highScores = [0, 0, 0, 0, 0]
-  //   updateHighScores(0);
-  // }
-  // else {
-  //   console.log('something')
-  //   console.log(highScores)
-  //   updateHighScores(0);
-  // }
+  if (highScores == null) {
+    highScores = [0, 0, 0, 0, 0]
+    updateHighScores(0);
+  }
+  else {
+    console.log('something')
+    console.log(highScores)
+    updateHighScores(0);
+  }
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -31,6 +30,7 @@ $(document).ready(function(){
 
   //A function to run the animation during the CPU's turn
   function animateBoard() {
+    userTurn = false;
     //Push the random number into the array that keeps track of the sequence
     cpuSequence.push(getRandomInt(0,3));
     //Resets the variable used later when comparing the two arrays
@@ -114,6 +114,7 @@ $(document).ready(function(){
         $('.highscore').eq(i).text(highScores[i])
       }
     }
+    localStorage.setItem("scoreStorage", JSON.stringify(highScores));
   }
 
   function youLose(){
@@ -140,7 +141,6 @@ $(document).ready(function(){
     if (userTurn == false){
       $('#lose').css('opacity', 0);
       animateBoard();
-      userTurn = true;
     }
   });
 
