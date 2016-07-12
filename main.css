@@ -62,6 +62,11 @@ button {
   margin: 0 auto;
   z-index: 10;
 }
+.button-on {
+  background-color: rgb(35, 250, 0);
+  border: 2px solid transparent;
+  border-color: rgb(35, 200, 0);
+}
 #center-button {
   position: absolute;
   left: 50%;

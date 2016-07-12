@@ -3,14 +3,16 @@ $(document).ready(function(){
   //two arrays that keep track of the patterns from the CPU and the player. They're compared to make sure the player is duplicating properly.
   var cpuSequence = [];
   var userSequence = [];
+  //a variable used to govern whether the player can interact with the quadrants or not, disabled during the CPU's turn and when the game hasn't started yet
   var userTurn = false;
   var colors = ['green', 'red', 'blue', 'yellow']
   //a variable that will later be used to hold an interval
   var intervalRun;
   var score = 0;
-  //A variable that's used to speed up the intervals and timeouts in order to make the game go faster as it progresses
+  //variables used to track progress when looping through the arrays
   var placeInUserSequence = 0;
   var placeInCPUSequence = 0;
+  //A variable that's used to speed up the intervals and timeouts in order to make the game go faster as it progresses
   var speed = 1;
   //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
   var highScores = JSON.parse(localStorage.getItem("scoreStorage"));
@@ -20,7 +22,6 @@ $(document).ready(function(){
     updateHighScores(0);
   }
   else {
-    console.log('something')
     console.log(highScores)
     updateHighScores(0);
   }
@@ -130,6 +131,7 @@ $(document).ready(function(){
     score = 0;
     updateScore(score);
     placeInUserSequence = 0;
+    $('#begin').removeClass('button-on');
     userSequence = [];
     cpuSequence = [];
   }
@@ -146,6 +148,7 @@ $(document).ready(function(){
     if (userTurn == false){
       clearInterval(intervalRun);
       $('#lose').css('opacity', 0);
+      $('#begin').addClass('button-on');
       animateBoard();
     }
   });
