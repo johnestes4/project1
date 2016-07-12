@@ -115,6 +115,10 @@ $(document).ready(function(){
         $('.highscore').eq(i).text(highScores[i])
       }
     }
+    //runs through the high scores array and trims out everything below the top 5, this prevents the array from getting unreasonably large over time
+    for (i = (highScores.length - 1); i > 4; i--) {
+        highScores.splice((highScores.length-1), 1);
+    }
     localStorage.setItem("scoreStorage", JSON.stringify(highScores));
   }
 
