@@ -10,6 +10,7 @@ $(document).ready(function(){
   var score = 0;
   //A variable that's used to speed up the intervals and timeouts in order to make the game go faster as it progresses
   var placeInUserSequence = 0;
+  var placeInCPUSequence = 0;
   var speed = 1;
   //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
   var highScores = JSON.parse(localStorage.getItem("scoreStorage"));
@@ -34,26 +35,26 @@ $(document).ready(function(){
     //Push the random number into the array that keeps track of the sequence
     cpuSequence.push(getRandomInt(0,3));
     //Resets the variable used later when comparing the two arrays
-    var i = 0;
+    placeInCPUSequence = 0;
     //This interval is stored in a variable, largely so I can clear it when needed
     intervalRun = setInterval(function(){
       //Runs through all the contents of the array and lights up the corresponding quadrant, and when it reaches the last one it stops the interval loop
       //It's done with an if statement rather than a for loop so that it executes timed with the interval
-      if (i < cpuSequence.length) {
-        $('.simon').eq(cpuSequence[i]).css('opacity', 1);
+      if (placeInCPUSequence < cpuSequence.length) {
+        $('.simon').eq(cpuSequence[placeInCPUSequence]).css('opacity', 1);
         window.setTimeout(function(){
           $('.simon').css('opacity', .2);
         }, (500 * speed));
-        i++;
+        placeInCPUSequence++;
       }
-      else if (i == cpuSequence.length) {
+      else if (placeInCPUSequence == cpuSequence.length) {
+        userTurn = true;
         clearInterval(intervalRun);
       };
     }, (1000 * speed));
     if (speed > 0.5) {
       speed = speed - 0.05;
     }
-    userTurn = true;
   }
 
   //A function to compare the two arrays
@@ -139,6 +140,7 @@ $(document).ready(function(){
   //When the green button is clicked, as long as it's not currently the user's turn, it starts a new game
   $('#begin').click(function(){
     if (userTurn == false){
+      clearInterval(intervalRun);
       $('#lose').css('opacity', 0);
       animateBoard();
     }
@@ -146,8 +148,10 @@ $(document).ready(function(){
 
   //When the user clicks a quadrant, this executes as appropriate
   $('.simon').click(function(){
-    //Makes sure it's the user's turn - if it's the CPU's turn (or the game hasn't started yet) nothing will happen
+    //Stop the animation - to try and prevent bugs where animations start triggering out of sequence
     if (userTurn == true) {
+      //Makes sure it's the user's turn - if it's the CPU's turn (or the game hasn't started yet) nothing will happen
+      clearInterval(intervalRun);
       //reset the opacity of all quadrants, so if the user's clicking through their pattern faster than the code is illuminating them, it ensures only one is lit at a time
       $('.simon').css('opacity', .2);
       //Max out the opacity of the quadrant the user clicked
