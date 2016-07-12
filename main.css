@@ -65,7 +65,7 @@ button {
 #center-button {
   position: absolute;
   left: 50%;
-  margin-left: -100px;
+  margin-left: -101px;
   margin-top: 150px;
   background-color:white;
   border: 20px solid rgb(30, 30, 30);

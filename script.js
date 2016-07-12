@@ -12,7 +12,18 @@ $(document).ready(function(){
   var placeInUserSequence = 0;
   var speed = 1;
   //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
-  var highScores = [0, 0, 0, 0, 0]
+  var highScores = [];
+
+  //  Code intended to store the high scores array in local storage - not currently working
+  // if (highScores == null) {
+  //   highScores = [0, 0, 0, 0, 0]
+  //   updateHighScores(0);
+  // }
+  // else {
+  //   console.log('something')
+  //   console.log(highScores)
+  //   updateHighScores(0);
+  // }
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
