@@ -1,7 +1,10 @@
 * {
   box-sizing: border-box;
 }
-
+@font-face {
+  font-family: 'DS-Digi';
+  src: url('fonts/DS-DIGIB.TTF');
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -9,21 +12,81 @@ html, body {
 }
 body {
   height: 100%;
-  background: linear-gradient(rgb(60, 60, 60), rgb(225, 225, 225), rgb(90, 90, 90));
-}
-@font-face {
-	font-family: 'DS-Digi';
-	src: url('fonts/DS-DIGIB.TTF');
+  background: linear-gradient(rgb(50, 50, 50), rgb(225, 225, 225), rgb(50, 50, 50));
 }
 header {
   display: -webkit-flex;
   display: flex;
-  background: linear-gradient(rgb(0, 0, 0), rgb(100, 100, 100));
+  background: linear-gradient(rgb(0, 0, 0), rgb(75, 75, 75));
   height: 10%;
   position: relative;
   padding: 3%;
   width: 100%;
   color: white;
+  text-align: center;
+  border-bottom: 10px solid transparent;
+}
+h1 {
+  text-align: center;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: -1%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  text-shadow: 3px 3px black;
+}
+h3 {
+  margin: -20px 0 5px 0;
+  font-size: 3em;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+button {
+  float: right;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: -2%;
+  margin-right: 28%;
+  background-color: rgb(35, 150, 0);
+  border: 2px solid transparent;
+  border-color: rgb(35, 100, 0);
+  border-radius: 100%;
+}
+
+/*classes & IDs */
+
+#board {
+  height: 500px;
+  width: 500px;
+  margin: 0 auto;
+  z-index: 10;
+}
+#center-button {
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: 150px;
+  background-color:white;
+  border: 20px solid rgb(30, 30, 30);
+  background-color: rgb(30, 30, 30);
+  color: white;
+  padding-top: 60px;
+  width:200px;
+  height:200px;
+  border-radius:100%;
+  text-align: center;
+}
+#highscores {
+  position: relative;
+  width: 12%;
+  float: right;
+  margin: 1%;
+  background-color: rgb(75, 75, 75);
+  color: white;
+  font-size: 1em;
+  padding: 1% 0% 0% 0%;
+  font-family: 'Roboto', sans-serif;
   text-align: center;
 }
 .instructions {
@@ -53,50 +116,35 @@ header {
   text-align: center;
   font-family: 'Roboto', sans-serif;
 }
-#highscores {
-  position: relative;
-  width: 12%;
-  float: right;
-  margin: 1%;
-  background-color: rgb(75, 75, 75);
-  color: white;
-  font-size: 1em;
-  padding: 1% 0% 0% 0%;
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
-}
-h1 {
-  text-align: center;
-  height: 100%;
+#lose {
+  float: left;
   margin: 0 auto;
-  margin-top: -1%;
-  font-family: 'Roboto', sans-serif;
-  font-size: 2em;
-  text-shadow: 3px 3px black;
-}
-#board {
-  height: 500px;
-  width: 500px;
-  margin: 0 auto;
-  z-index: 10;
-}
-h3 {
-  margin: -20px 0 5px 0;
-  font-size: 3em;
-  text-align: center;
+  margin-left: 29%;
+  opacity: 0;
   font-family: 'Roboto', sans-serif;
 }
-button {
-  float: right;
-  width: 30px;
-  height: 30px;
-  margin: 0 auto;
-  margin-top: -2%;
-  margin-right: 28%;
-  background-color: rgb(35, 150, 0);
-  border: 2px solid transparent;
-  border-color: rgb(35, 100, 0);
-  border-radius: 100%;
+.quadrant {
+  border: 15px solid transparent;
+  border-color: rgb(30, 30, 30);
+  border-radius: 999px;
+  height: 50%;
+  width: 50%;
+  float: left;
+}
+#quadrant1 {
+  border-radius: 100% 0px 0px 0px;
+}
+
+#quadrant2 {
+  border-radius: 0px 100% 0px 0px;
+}
+
+#quadrant3 {
+  border-radius: 0px 0px 0px 100%;
+}
+
+#quadrant4 {
+  border-radius: 0px 0px 100% 0px;
 }
 #score {
   float: left;
@@ -115,83 +163,31 @@ button {
   background-color: gray;
   font-family: 'DS-Digi';
 }
-#lose {
-  float: left;
-  margin: 0 auto;
-  margin-left: 29%;
-  opacity: 0;
-  font-family: 'Roboto', sans-serif;
-}
 .simon {
   height: 100%;
   width: 100%;
   float: left;
+  opacity: .2;
   z-index: -1;
 }
-
-.quadrant {
-  border: 15px solid transparent;
-  border-color: rgb(30, 30, 30);
-  border-radius: 999px;
-  height: 50%;
-  width: 50%;
-  float: left;
-}
-
-#quadrant1 {
-  border-radius: 100% 0px 0px 0px;
-}
-
-#quadrant2 {
-  border-radius: 0px 100% 0px 0px;
-}
-
-#quadrant3 {
-  border-radius: 0px 0px 0px 100%;
-}
-
-#quadrant4 {
-  border-radius: 0px 0px 100% 0px;
-}
-
 #green {
   background-color: green;
   border-radius: 100% 0px 0px 0px;
-  opacity: .2;
 }
-
 #red {
   background-color: red;
   border-radius: 0px 100% 0px 0px;
-  opacity: .2;
 }
-
 #blue {
   background-color: blue;
   border-radius: 0px 0px 0px 100%;
-  opacity: .2;
 }
-
 #yellow {
   background-color: yellow;
   border-radius: 0px 0px 100% 0px;
-  opacity: .2;
 }
-#center-button {
-  position: absolute;
-  left: 50%;
-  margin-left: -100px;
-  margin-top: 150px;
-  background-color:white;
-  border: 20px solid rgb(30, 30, 30);
-  background-color: rgb(30, 30, 30);
-  color: white;
-  padding-top: 60px;
-	width:200px;
-	height:200px;
-	border-radius:50%;
-  text-align: center;
-}
+
+/*make the sidebar disappear if the page gets too small, so it doesn't shove the simon board out of place*/
 @media (max-width: 800px) {
   #sidebar {
     width: 0px;

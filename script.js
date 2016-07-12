@@ -1,6 +1,5 @@
 $(document).ready(function(){
   console.log("Good to go!")
-  var turn = 1;
   //two arrays that keep track of the patterns from the CPU and the player. They're compared to make sure the player is duplicating properly.
   var cpuSequence = [];
   var userSequence = [];
