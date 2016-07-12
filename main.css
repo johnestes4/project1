@@ -35,6 +35,7 @@ header {
   margin-top: -1%;
   opacity: 0;
   transition:.3s;
+  font-family: 'Roboto', sans-serif;
 }
 .instructions li {
   margin-top: 11%;
@@ -48,6 +49,7 @@ header {
   color: white;
   font-size: 1.4em;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 h2 {
@@ -173,4 +175,10 @@ button {
 	height:200px;
 	border-radius:50%;
   text-align: center;
+}
+@media (max-width: 800px) {
+  #sidebar {
+    width: 0px;
+    opacity: 0;
+  }
 }
