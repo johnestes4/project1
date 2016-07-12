@@ -10,8 +10,10 @@ $(document).ready(function(){
   var intervalRun;
   var score = 0;
   //A variable that's used to speed up the intervals and timeouts in order to make the game go faster as it progresses
+  var placeInUserSequence = 0;
   var speed = 1;
   //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
+  var highScores = [0, 0, 0, 0, 0]
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -62,7 +64,6 @@ $(document).ready(function(){
   //A function to compare the two arrays
   function checkPatterns() {
     //uses the
-    var placeInUserSequence = 0;
     //every time the user clicks a quadrant and a color is added to their sequence, it checks if it matches the color in the same place on the CPU's sequence
     if (userSequence[placeInUserSequence] == cpuSequence[placeInUserSequence]) {
       placeInUserSequence++;
@@ -80,6 +81,7 @@ $(document).ready(function(){
     else {
       userTurn = false;
       $('#lose').css('opacity', 1);
+      updateHighScores(score);
       score = 0;
       updateScore(score);
       placeInUserSequence = 0;
@@ -116,10 +118,32 @@ $(document).ready(function(){
   //A basic function to update score - if the user's score is under 10, it adds a 0 in front of it so that the score is still displayed using 2 digits
   function updateScore(num){
     if (num < 10) {
-      $('#score').text("0" + score);
+      $('#score').text("0" + num);
     }
     else {
-      $('#score').text(score);
+      $('#score').text(num);
+    }
+  }
+
+  function updateHighScores(numIn){
+    num = parseInt(numIn);
+    if (num > highScores[0]) {
+      highScores.splice(0, 0, num);
+    }
+    else if (num > highscores[1]) {
+      highScores.splice(1, 0, num);
+    }
+    else if (num > highscores[2]) {
+      highScores.splice(2, 0, num);
+    }
+    else if (num > highscores[3]) {
+      highScores.splice(3, 0, num);
+    }
+    else if (num > highscores[4]) {
+      highScores.splice(4, 0, num);
+    }
+    for (i = 0; i < 4; i++) {
+      $('.highscore').eq(i).text(highScores[i])
     }
   }
 
