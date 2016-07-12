@@ -16,6 +16,7 @@ $(document).ready(function(){
 
   $('#begin').click(function(){
     if (userTurn == false){
+      $('#lose').css('opacity', 0);
       animateBoard();
       userTurn = true;
     }
@@ -43,6 +44,7 @@ $(document).ready(function(){
   }
   $('.simon').click(function(){
     if (userTurn == true) {
+      $('.simon').css('opacity', .2);
       $(this).css('opacity', 1);
       var thisColor = $(this).attr('id');
       var thisNumber = colors.indexOf(thisColor);
@@ -58,20 +60,29 @@ $(document).ready(function(){
           userTurn = false;
           userSequence = [];
           score++;
-          $('#score').text(score + " points")
+          updateScore(score);
           animateBoard();
         }
       }
       else {
         userTurn = false;
-        alert('LOSE');
+        $('#lose').css('opacity', 1);
         score = 0;
-        $('#score').text(score + " points")
+        updateScore(score);
         placeInUserSequence = 0;
         userSequence = [];
         cpuSequence = [];
       }
     }
-  })
+  });
+
+  function updateScore(num){
+    if (num < 10) {
+      $('#score').text("0" + score);
+    }
+    else {
+      $('#score').text(score);
+    }
+  }
 
 });
