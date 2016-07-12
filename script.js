@@ -80,6 +80,7 @@ $(document).ready(function(){
     //If the user clicks the wrong color, it ends the user's turn, displays a message that they lose, and resets their score and both arrays
     else {
       userTurn = false;
+      speed = 1;
       $('#lose').css('opacity', 1);
       updateHighScores(score);
       score = 0;
@@ -127,23 +128,29 @@ $(document).ready(function(){
 
   function updateHighScores(numIn){
     num = parseInt(numIn);
-    if (num > highScores[0]) {
-      highScores.splice(0, 0, num);
-    }
-    else if (num > highscores[1]) {
-      highScores.splice(1, 0, num);
-    }
-    else if (num > highscores[2]) {
-      highScores.splice(2, 0, num);
-    }
-    else if (num > highscores[3]) {
-      highScores.splice(3, 0, num);
-    }
-    else if (num > highscores[4]) {
-      highScores.splice(4, 0, num);
-    }
-    for (i = 0; i < 4; i++) {
-      $('.highscore').eq(i).text(highScores[i])
+      if (num > highScores[0]) {
+        highScores.splice(0, 0, num);
+      }
+      else if (num > highScores[1]) {
+        highScores.splice(1, 0, num);
+      }
+      else if (num > highScores[2]) {
+        highScores.splice(2, 0, num);
+      }
+      else if (num > highScores[3]) {
+        highScores.splice(3, 0, num);
+      }
+      else if (num > highScores[4]) {
+        highScores.splice(4, 0, num);
+      }
+
+    for (i = 0; i < 5; i++) {
+      if (num < 10) {
+        $('.highscore').eq(i).text('0' + highScores[i])
+      }
+      else {
+        $('.highscore').eq(i).text(highScores[i])
+      }
     }
   }
 
