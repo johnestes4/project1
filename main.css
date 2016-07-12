@@ -2,11 +2,59 @@
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
 body {
+  background-color: rgb(225, 225, 225);
 }
 @font-face {
 	font-family: 'DS-Digi';
 	src: url('fonts/DS-DIGIB.TTF');
+}
+header {
+  display: -webkit-flex;
+  display: flex;
+  background: linear-gradient(rgb(0, 0, 0), rgb(75, 75, 75));
+  height: 10%;
+  position: relative;
+  padding: 3%;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+.instructions {
+  width: 15%;
+  float: left;
+  margin: 1%;
+  background-color: rgb(75, 75, 75);
+  color: white;
+  font-size: 1em;
+  padding: 0% 2% 0% 3%;
+  margin-top: -1%;
+  opacity: 0;
+  transition:.3s;
+}
+.instructions li {
+  margin-top: 11%;
+  margin-bottom: 11%;
+}
+#instruction-start {
+  width: 15%;
+  margin: 1%;
+  padding: 1%;
+  background-color: rgb(75, 75, 75);
+  color: white;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
 }
 #board {
   height: 500px;
@@ -19,6 +67,7 @@ h3 {
   margin: -20px 0 5px 0;
   font-size: 3em;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 button {
   float: right;

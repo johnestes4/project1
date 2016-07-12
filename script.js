@@ -14,6 +14,12 @@ $(document).ready(function(){
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  $('#instruction-start').hover(function(){
+    $('.instructions').css('opacity', 1);
+    }, function(){
+    $('.instructions').css('opacity', 0);
+  });
+
   $('#begin').click(function(){
     if (userTurn == false){
       $('#lose').css('opacity', 0);

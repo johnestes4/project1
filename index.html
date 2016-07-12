@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>Simon</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,6 +10,19 @@
   <title>Document</title>
 </head>
 <body>
+  <header>
+    <h2>WDI Presents: Simon</h2>
+  </header>
+  <nav id='sidebar'>
+    <div id='instruction-start'>Instructions</div>
+    <ul class='instructions'>
+      <li class='instruction-list'>Click the green button to begin.</li>
+      <li class='instruction-list'>The game will present you with increasingly complex sequences of colors.</li>
+      <li class='instruction-list'>Click the quadrants to match the patterns presented to you.</li>
+      <li class='instruction-list'>You gain a point with each sequence you complete.</li>
+      <li class='instruction-list'>If you click the wrong quadrant at any point, the game ends and your score resets.</li>
+    </ul>
+  </nav>
   <div id='board'>
     <div class='quadrant' id='quadrant1'>
       <div id="green" class='simon'></div>
