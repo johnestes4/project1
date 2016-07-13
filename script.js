@@ -35,7 +35,6 @@ $(document).ready(function(){
       updateHighScores(0);
     }
     else {
-      console.log(highScores)
       updateHighScores(0);
     }
   }
