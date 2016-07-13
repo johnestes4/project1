@@ -168,6 +168,18 @@ h3 {
   background-color: gray;
   font-family: 'DS-Digi';
 }
+.highscore {
+  margin: 0 auto;
+  margin-right: 15%;
+}
+.scoreName {
+  display: inline-block;
+  margin-right: 10%;
+}
+.highScoreNumber {
+  display: inline-block;
+  margin-left: 10%;
+}
 .simon {
   height: 100%;
   width: 100%;

@@ -131,10 +131,12 @@ $(document).ready(function(){
       }
     for (i = 0; i < 5; i++) {
       if (highScores[i] < 10) {
-        $('.highscore').eq(i).text(highScoreInitials[i] + '....0' + highScores[i])
+        $('.scoreName').eq(i).text(highScoreInitials[i]);
+        $('.highScoreNumber').eq(i).text('0' + highScores[i]);
       }
       else {
-        $('.highscore').eq(i).text(highScoreInitials[i] + '....' + highScores[i])
+        $('.scoreName').eq(i).text(highScoreInitials[i]);
+        $('.highScoreNumber').eq(i).text(highScores[i]);
       }
     }
     //runs through the high scores array and trims out everything below the top 5, this prevents the array from getting unreasonably large over time
