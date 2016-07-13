@@ -14,11 +14,13 @@ $(document).ready(function(){
   var placeInCPUSequence = 0;
   //A variable that's used to speed up the intervals and timeouts in order to make the game go faster as it progresses
   var speed = 1;
-  //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
+  //Pulls the high scores array from local storage. If this is the first time playing and no high scores array exists, it instead initializes it with zeros.
   var highScores = JSON.parse(localStorage.getItem("scoreStorage"));
-
-  if (highScores == null) {
-    highScores = [0, 0, 0, 0, 0]
+  var highScoreInitials = JSON.parse(localStorage.getItem("initialStorage"));
+  if (highScoreInitials == null || highScores == null) {
+    highScoreInitials = ['WDI', 'WDI', 'WDI', 'WDI', 'WDI'];
+    highScores = [0, 0, 0, 0, 0];
+    //Runs the update high scores function to push the scores on to the HTML
     updateHighScores(0);
   }
   else {
@@ -26,6 +28,7 @@ $(document).ready(function(){
     updateHighScores(0);
   }
 
+  //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -94,26 +97,36 @@ $(document).ready(function(){
   function updateHighScores(numIn){
     num = parseInt(numIn);
       if (num > highScores[0]) {
+        var initialsIn = prompt("New High Score! Enter your initials:").substring(0,3);
+        highScoreInitials.splice(0, 0, initialsIn.toUpperCase());
         highScores.splice(0, 0, num);
       }
       else if (num > highScores[1]) {
+        var initialsIn = prompt("New High Score! Enter your initials:").substring(0,3);
+        highScoreInitials.splice(1, 0, initialsIn.toUpperCase());
         highScores.splice(1, 0, num);
       }
       else if (num > highScores[2]) {
+        var initialsIn = prompt("New High Score! Enter your initials:").substring(0,3);
+        highScoreInitials.splice(2, 0, initialsIn.toUpperCase());
         highScores.splice(2, 0, num);
       }
       else if (num > highScores[3]) {
+        var initialsIn = prompt("New High Score! Enter your initials:").substring(0,3);
+        highScoreInitials.splice(3, 0, initialsIn.toUpperCase());
         highScores.splice(3, 0, num);
       }
       else if (num > highScores[4]) {
+        var initialsIn = prompt("New High Score! Enter your initials:").substring(0,3);
+        highScoreInitials.splice(4, 0, initialsIn.toUpperCase());
         highScores.splice(4, 0, num);
       }
     for (i = 0; i < 5; i++) {
       if (highScores[i] < 10) {
-        $('.highscore').eq(i).text('0' + highScores[i])
+        $('.highscore').eq(i).text(highScoreInitials[i] + '....0' + highScores[i])
       }
       else {
-        $('.highscore').eq(i).text(highScores[i])
+        $('.highscore').eq(i).text(highScoreInitials[i] + '....' + highScores[i])
       }
     }
     //runs through the high scores array and trims out everything below the top 5, this prevents the array from getting unreasonably large over time
@@ -121,6 +134,7 @@ $(document).ready(function(){
         highScores.splice((highScores.length-1), 1);
     }
     localStorage.setItem("scoreStorage", JSON.stringify(highScores));
+    localStorage.setItem("initialStorage", JSON.stringify(highScoreInitials));
   }
 
   function youLose(){
@@ -131,7 +145,7 @@ $(document).ready(function(){
     score = 0;
     updateScore(score);
     placeInUserSequence = 0;
-    $('#begin').removeClass('button-on');
+    $('#begin').css('opacity', 0.5);
     userSequence = [];
     cpuSequence = [];
   }
@@ -148,7 +162,7 @@ $(document).ready(function(){
     if (userTurn == false){
       clearInterval(intervalRun);
       $('#lose').css('opacity', 0);
-      $('#begin').addClass('button-on');
+      $('#begin').css('opacity', 1);
       animateBoard();
     }
   });
@@ -174,6 +188,14 @@ $(document).ready(function(){
       userSequence.push(thisNumber);
       //And finally, run the checkPatterns function to see if the arrays match up
       checkPatterns();
+    }
+  });
+
+  $('#clearScores').click(function(){
+    if (confirm('Are you SURE you want to reset the high scores?')) {
+      highScores = [0, 0, 0, 0, 0];
+      highScoreInitials = ['WDI', 'WDI', 'WDI', 'WDI', 'WDI'];
+      updateHighScores(0);
     }
   });
 });

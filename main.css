@@ -41,31 +41,27 @@ h3 {
   text-align: center;
   font-family: 'Roboto', sans-serif;
 }
-button {
+
+/*classes & IDs */
+
+#begin {
   float: right;
   width: 30px;
   height: 30px;
   margin: 0 auto;
   margin-top: -2%;
   margin-right: 28%;
-  background-color: rgb(35, 150, 0);
+  background-color: rgb(35, 250, 0);
   border: 2px solid transparent;
-  border-color: rgb(35, 100, 0);
+  border-color: rgb(35, 200, 0);
   border-radius: 100%;
+  opacity: 0.5
 }
-
-/*classes & IDs */
-
 #board {
   height: 500px;
   width: 500px;
   margin: 0 auto;
   z-index: 10;
-}
-.button-on {
-  background-color: rgb(35, 250, 0);
-  border: 2px solid transparent;
-  border-color: rgb(35, 200, 0);
 }
 #center-button {
   position: absolute;
@@ -84,15 +80,19 @@ button {
 }
 #highscores {
   position: relative;
-  width: 11%;
+  width: 16%;
   float: right;
   margin: 1%;
   background-color: rgb(75, 75, 75);
   color: white;
   font-size: 1em;
-  padding: 1% 0% 0% 0%;
+  padding: 1% 0% 1% 0%;
   font-family: 'Roboto', sans-serif;
   text-align: center;
+}
+#highscores li {
+  font-family: monospace;
+  font-size: 1.2em;
 }
 .instructions {
   width: 15%;
