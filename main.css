@@ -80,7 +80,7 @@ h3 {
 }
 #highscores {
   position: relative;
-  width: 16%;
+  width: 150px;
   float: right;
   margin: 1%;
   background-color: rgb(75, 75, 75);
@@ -93,6 +93,14 @@ h3 {
 #highscores li {
   font-family: monospace;
   font-size: 1.2em;
+}
+.highscore {
+  margin: 0 auto;
+  margin-right: 35%;
+}
+.highScoreNumber {
+  display: inline-block;
+  margin-left: 20%;
 }
 .instructions {
   width: 15%;
@@ -168,17 +176,9 @@ h3 {
   background-color: gray;
   font-family: 'DS-Digi';
 }
-.highscore {
-  margin: 0 auto;
-  margin-right: 15%;
-}
 .scoreName {
   display: inline-block;
   margin-right: 10%;
-}
-.highScoreNumber {
-  display: inline-block;
-  margin-left: 10%;
 }
 .simon {
   height: 100%;
