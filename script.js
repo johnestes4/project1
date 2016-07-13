@@ -19,6 +19,12 @@ $(document).ready(function(){
   var highScores = JSON.parse(localStorage.getItem("scoreStorage"));
   var highScoreInitials = JSON.parse(localStorage.getItem("initialStorage"));
 
+  //initialize an array of the sound effects to be used
+  var sounds = [new Audio('audio/greenSound.wav'), new Audio('audio/redSound.wav'), new Audio('audio/blueSound.wav'), new Audio('audio/yellowSound.wav'), new Audio('audio/loseSound.wav')];
+  for (i = 0; i < sounds.length; i++) {
+    sounds[i].volume = 0.1;
+  }
+
   checkHighScores()
 
   function checkHighScores(){
@@ -39,6 +45,9 @@ $(document).ready(function(){
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  function intializeSound() {
+
+  }
 
   //A function to run the animation during the CPU's turn
   function animateBoard() {
@@ -53,8 +62,12 @@ $(document).ready(function(){
       //It's done with an if statement rather than a for loop so that it executes timed with the interval
       if (placeInCPUSequence < cpuSequence.length) {
         $('.simon').eq(cpuSequence[placeInCPUSequence]).css('opacity', 1);
+        var whichAudio = cpuSequence[placeInCPUSequence];
+        sounds[whichAudio].play();
         window.setTimeout(function(){
           $('.simon').css('opacity', .2);
+          sounds[whichAudio].pause();
+          sounds[whichAudio].currentTime = 0;
         }, (500 * speed));
         placeInCPUSequence++;
       }
@@ -73,7 +86,13 @@ $(document).ready(function(){
     //uses the
     //every time the user clicks a quadrant and a color is added to their sequence, it checks if it matches the color in the same place on the CPU's sequence
     if (userSequence[placeInUserSequence] == cpuSequence[placeInUserSequence]) {
+      var whichAudio = userSequence[placeInUserSequence];
+      sounds[whichAudio].play();
       placeInUserSequence++;
+      setTimeout(function(){
+        sounds[whichAudio].pause();
+        sounds[whichAudio].currentTime = 0;
+      }, (500 * speed));
       //once the user's sequence is as long as the CPU's and no mistakes have been made, it ends the user's turn, increases their score, resets the variables, and starts the CPU's next turn
       if (userSequence.length == cpuSequence.length) {
         userTurn = false;
@@ -86,6 +105,7 @@ $(document).ready(function(){
     }
     //If the user clicks the wrong color, it ends the user's turn, displays a message that they lose, and resets their score and both arrays
     else {
+      sounds[4].play();
       youLose();
     }
   }
