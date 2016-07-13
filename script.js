@@ -5,6 +5,7 @@ $(document).ready(function(){
   var userSequence = [];
   //a variable used to govern whether the player can interact with the quadrants or not, disabled during the CPU's turn and when the game hasn't started yet
   var userTurn = false;
+  //an array used to determine which number to assign to the user's sequence when a quadrant is clicked - see that function for more
   var colors = ['green', 'red', 'blue', 'yellow']
   //a variable that will later be used to hold an interval
   var intervalRun;
@@ -17,21 +18,27 @@ $(document).ready(function(){
   //Pulls the high scores array from local storage. If this is the first time playing and no high scores array exists, it instead initializes it with zeros.
   var highScores = JSON.parse(localStorage.getItem("scoreStorage"));
   var highScoreInitials = JSON.parse(localStorage.getItem("initialStorage"));
-  if (highScoreInitials == null || highScores == null) {
-    highScoreInitials = ['WDI', 'WDI', 'WDI', 'WDI', 'WDI'];
-    highScores = [0, 0, 0, 0, 0];
-    //Runs the update high scores function to push the scores on to the HTML
-    updateHighScores(0);
-  }
-  else {
-    console.log(highScores)
-    updateHighScores(0);
+
+  checkHighScores()
+
+  function checkHighScores(){
+    if (highScoreInitials == null || highScores == null) {
+      highScoreInitials = ['WDI', 'WDI', 'WDI', 'WDI', 'WDI'];
+      highScores = [0, 0, 0, 0, 0];
+      //Runs the update high scores function to push the scores on to the HTML
+      updateHighScores(0);
+    }
+    else {
+      console.log(highScores)
+      updateHighScores(0);
+    }
   }
 
   //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
 
   //A function to run the animation during the CPU's turn
   function animateBoard() {
@@ -94,6 +101,7 @@ $(document).ready(function(){
   }
 
   //Handles the high score board - it runs through all the options to see where to place your new score, then splices it into the array where appropriate
+  //Now also grabs your intials and plugs them into their own array
   function updateHighScores(numIn){
     num = parseInt(numIn);
       if (num > highScores[0]) {
