@@ -123,6 +123,18 @@ $(document).ready(function(){
   //Now also grabs your intials and plugs them into their own array
   function updateHighScores(numIn){
     num = parseInt(numIn);
+      //Might these if statements be replaced with a for loop?
+      //replacedAt = function getReplaceValue{
+        //for (i in highScores){
+          //if (num > highScores[i]){
+            //return i
+        //}
+        //}
+    //}
+    //var initialsIn = prompt("New High Score! Enter your initials:").substring(0,3);
+    //highScoreInitials.splice(replacedAt, 0, initialsIn.toUpperCase());
+    //highScores.splice(replacedAt, 0, num);
+
       if (num > highScores[0]) {
         var initialsIn = prompt("New High Score! Enter your initials:").substring(0,3);
         highScoreInitials.splice(0, 0, initialsIn.toUpperCase());
