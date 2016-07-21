@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  // this is great, but take it out for production code
   console.log("Good to go!")
   //two arrays that keep track of the patterns from the CPU and the player. They're compared to make sure the player is duplicating properly.
   var cpuSequence = [];
@@ -39,11 +40,13 @@ $(document).ready(function(){
     }
   }
 
+  // functions like this are considered helpers, I would recommend separting these into a different file
   //A function that randomly generates a number between 0 and 3, used to randomly pick the next color to light up
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  // this is an empty function block, get rid of this
   function intializeSound() {
 
   }
@@ -74,6 +77,7 @@ $(document).ready(function(){
         userTurn = true;
         clearInterval(intervalRun);
       };
+      // the speed thing is so cool, i had no idea of this when i was first testin it out
     }, (1000 * speed));
     if (speed > 0.5) {
       speed = speed - 0.05;
@@ -88,6 +92,7 @@ $(document).ready(function(){
       var whichAudio = userSequence[placeInUserSequence];
       sounds[whichAudio].play();
       placeInUserSequence++;
+      // this is the second time i've seen this functionality, maybe make a jquery plugin for it! or just a function
       setTimeout(function(){
         sounds[whichAudio].pause();
         sounds[whichAudio].currentTime = 0;
@@ -99,6 +104,7 @@ $(document).ready(function(){
         score++;
         updateScore(score);
         placeInUserSequence = 0;
+        // noice
         animateBoard();
       }
     }
@@ -122,6 +128,7 @@ $(document).ready(function(){
   //Handles the high score board - it runs through all the options to see where to place your new score, then splices it into the array where appropriate
   //Now also grabs your intials and plugs them into their own array
   function updateHighScores(numIn){
+    // better might be a for loop that sets a condition on an increasing i cause it seems like everything correlates pretty linearly through all these if/else conditionals
     num = parseInt(numIn);
       if (num > highScores[0]) {
         var initialsIn = prompt("New High Score! Enter your initials:").substring(0,3);
@@ -188,6 +195,7 @@ $(document).ready(function(){
 
   //When the green button is clicked, as long as it's not currently the user's turn, it starts a new game
   $('#begin').click(function(){
+    // there's a slight bug here where if it is my turn and i've clicked start, it does start the game over, but doesn't reset score.
     if (userTurn == false){
       clearInterval(intervalRun);
       $('#lose').css('opacity', 0);
@@ -198,6 +206,7 @@ $(document).ready(function(){
 
   //When the user clicks a quadrant, this executes as appropriate
   $('.simon').click(function(){
+    // nice job only using one click event here.
     //Stop the animation - to try and prevent bugs where animations start triggering out of sequence
     if (userTurn == true) {
       //Makes sure it's the user's turn - if it's the CPU's turn (or the game hasn't started yet) nothing will happen

@@ -1,3 +1,7 @@
+/* the reason the border is overlapping is be cause the elements are different sizes.
+Or at least that's my best guess. My suggestion would be to fake the funk by
+overlapping the black onto the colored ones uzing z-indexes.
+*/
 * {
   box-sizing: border-box;
 }
